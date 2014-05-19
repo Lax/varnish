@@ -50,7 +50,7 @@ sub devicedetect {
 		   http://stackoverflow.com/questions/5341637/how-do-detect-android-tablets-in-general-useragent */
 		elsif (req.http.User-Agent ~ "(?i)android.*(mobile|mini)") { set req.http.X-UA-Device = "mobile-android"; }
 		// android 3/honeycomb was just about tablet-only, and any phones will probably handle a bigger page layout.
-#		elsif (req.http.User-Agent ~ "(?i)android 3")              { set req.http.X-UA-Device = "tablet-android"; }
+		elsif (req.http.User-Agent ~ "(?i)android 3")              { set req.http.X-UA-Device = "tablet-android"; }
 		/* see http://my.opera.com/community/openweb/idopera/ */
 		elsif (req.http.User-Agent ~ "Opera Mobi")                  { set req.http.X-UA-Device = "mobile-smartphone"; }
 		// May very well give false positives towards android tablets. Suggestions welcome.
