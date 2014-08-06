@@ -113,7 +113,7 @@ sub vcl_recv {
  
         # normalize Accept-Encoding to reduce vary
 	if (req.http.Accept-Encoding) {
-		if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
+		if (req.url ~ "\.(jpg|png|gif|ico|gz|tgz|bz2|tbz|mp3|ogg)$") {
 			# No point in compressing these
 			remove req.http.Accept-Encoding;
 			#too large for our poor RAM
