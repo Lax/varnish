@@ -177,22 +177,10 @@ sub vcl_fetch {
 #			return (restart);
 #		}
 
-#   让Vary 只包含 Accept-Encoding 和 Cookie, 防止产生过多的cache object
+#   让Vary 只包含 Accept-Encoding, 防止产生过多的cache object
     if (beresp.http.Vary) {
       if (beresp.http.Vary ~ "Accept-Encoding") {
-        set beresp.http.tempVary = "Accept-Encoding";
-      }
-      if (beresp.http.Vary ~ "Cookie") {
-        if (beresp.http.tempVary) {
-          set beresp.http.tempVary = beresp.http.tempVary + ",Cookie";
-        } else {
-          set beresp.http.tempVary = "Cookie";
-        }
-      }
-
-      if (beresp.http.tempVary) {
-        set beresp.http.Vary = beresp.http.tempVary;
-        remove beresp.http.tempVary;
+        set beresp.http.Vary = "Accept-Encoding";
       } else {
         remove beresp.http.Vary;
       }
